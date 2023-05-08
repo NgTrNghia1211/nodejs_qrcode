@@ -1,0 +1,89 @@
+{{!-- ? Method Show in ProductController --}}
+<div class="card text-center">
+    <div class="card-header">
+        <h3>{{product.name}}</h3>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="mt-4 col-sm-6">
+                <img src="{{product.img}}" alt="" style="height: 350px; width: 350px;">
+                <div class="mt-4">
+                    <h5 class="card-title text-left">{{product.name}}</h5>
+                    <h6 class="card-title text-left">Mô tả sản phẩm</h6>
+                    <p class="card-title text-left mb-0">{{product.description}}</p>
+                    <p class="card-text text-left mb-0 animate-character mt-2">Price: {{product.price}}</p>
+                </div>
+            </div>
+
+            <div class="mt-4 col-sm-6">
+                <figure class="figure">
+                    <img id="qrCode" onclick="myFunction()"
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{product.slug}}" alt="">
+                    <figcaption class="figure-caption ">QR code for this product information</figcaption>
+                </figure>
+                {{!-- <div class="mt-4">
+                    <a type="button" class="btn btn-primary text-light" data-id="{{product._id}}" data-toggle="modal"
+                        data-target="#buy-product-modal">
+                        Buy Item
+                    </a>
+                    <p>Click this button to buy the item</p>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted mt-2">
+        Đồ án
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="buy-product-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Buy this Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-left">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-buy-product" class="btn btn-danger"
+                        data-dismiss="modal">Confirm</button>
+                    <button type="button" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form method="POST" name="buy-product-form"> </form>
+
+<script>
+        function myFunction() {
+            let qrValue = document.querySelector('#qrCode')
+            window.open(qrValue.src)
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var productID;
+            var deleteForm = document.forms['buy-product-form'];
+            var btnDeleteProduct = document.getElementById('btn-buy-product');
+
+            { { !-- ? click confirm delete button-- } }
+            $('#buy-product-modal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                productID = button.data('id'); // Extract info from data-* attributes
+                // console.log(id);
+            })
+
+
+
+            btnDeleteProduct.onclick = function () {
+                deleteForm.action = '/products/' + productID + '?_method=DELETE';
+                deleteForm.submit();
+            }
+
+        });
+</script>
+</div>

@@ -1,0 +1,2 @@
+Authentication: Answer for question Who you are?
+Authorization: Answer for question What you can access?

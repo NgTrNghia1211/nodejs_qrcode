@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-body">
+                    <form method="POST" action="/login" class="px-4 py-3">
+                        <h3>LOGIN</h3>
+                        <div class="form-group">
+                            <label for="name">Username</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+
+                        <div class="form-check">
+                            <input onclick="myFunction()" class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Show password
+                            </label>
+                        </div>
+
+                        <div class="mt-8">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        
+
+                        <script>
+                            function myFunction() {
+                                var x = document.getElementById("password");
+                                if (x.type === "password") {
+                                    x.type = "text";
+                                } else {
+                                    x.type = "password";
+                                }
+                            }
+                        </script>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

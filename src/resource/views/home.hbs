@@ -1,0 +1,42 @@
+<div class="wrapper-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card" style="width: 30rem;">
+                    <video id="preview" width="100%"></video>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label>SCAN QR CODE</label>
+                <input type="text" name="text" id="text" placeholder="http://localhost:3000/products/" class="form-control">
+
+                <button type="button" onclick="myFunction()" class="mt-4 btn btn-light">Go</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slug;
+        let scanner = new Instascan.Scanner({video: document.getElementById('preview')});
+        Instascan.Camera.getCameras().then(function(cameras){
+            if(cameras.length > 0){
+                scanner.start(cameras[0]);
+            } else{
+                alert('No cameras found');
+            }
+        }).catch(function(e){
+            console.error(e);
+        });
+
+        scanner.addListener('scan', function(c){
+            document.getElementById('text').value=c;
+            slug = c;
+        });
+
+        function myFunction() {
+            //location.replace('http://localhost:3000/products/'+ slug);
+            window.open('http://localhost:3000/products/' + slug);
+        }
+    </script>
+</div>
