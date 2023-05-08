@@ -7,8 +7,16 @@
 * The application displays that information to the user
 
 ## Candidate Technologies
-* HTML/CSS, NodeJs, Handlebars, Jwt
+* Bootraps, JS, NodeJs, Handlebars, Jwt
+* Using Model MVC
+* Using Mongo DB
+
+## Features
+* Basic CRUD
+* Basic Authentication and Authorization
+* Custom views
 
 ## Reference 
 * F8 - NodeJs
-* 
+* https://expressjs.com/
+* https://handlebarsjs.com/
